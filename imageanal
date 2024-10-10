@@ -1,0 +1,8 @@
+const vision = require('@google-cloud/vision');
+const client = new vision.ImageAnnotatorClient();
+
+const analyzeImage = async (imagePath) => {
+    const [result] = await client.labelDetection(imagePath);
+    const labels = result.labelAnnotations.map(label => label.description);
+    return labels;
+};
